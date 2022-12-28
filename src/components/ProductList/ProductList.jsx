@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { productContext } from '../../ProductContextProvider';
-import ContactCard from '../ProductCard/ProductCard';
+import ProductCard from '../ProductCard/ProductCard';
 
 const ProductList = () => {
   const { getProducts, products } = useContext(productContext);
@@ -13,7 +13,7 @@ const ProductList = () => {
     <div className='container d-flex flex-column align-items-center'>
       <div className='d-flex flex-wrap justify-content-center'>
         {products.map((item) => (
-          <ContactCard key={item.id} {...item} />
+          <ProductCard key={item.id} {...item} />
         ))}
       </div>
     </div>

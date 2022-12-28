@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 import { productContext } from '../../ProductContextProvider';
 
-function ProductCard(title, descr, price, id) {
+function ProductCard({title, descr, price, id}) {
   const navigate = useNavigate();
   const { deleteProduct } = useContext(productContext);
   return (
@@ -19,12 +19,12 @@ function ProductCard(title, descr, price, id) {
     >
       <Card.Body>
         <Card.Title>title : {title}</Card.Title>
-        <Card.Text>descr : {descr}</Card.Text>
-        <Card.Text> $ {price} </Card.Text>
+        <Card.Title>descr : {descr}</Card.Title>
+        <Card.Title> ${price} </Card.Title>
       </Card.Body>
 
       <Card.Body>
-        <Button onClick={deleteProduct(id)} className='mx-3' variant='danger'>
+        <Button onClick={() => deleteProduct(id)} className='mx-3' variant='danger'>
           Delete
         </Button>
         <Button

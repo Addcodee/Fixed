@@ -1,25 +1,26 @@
 import React, { useContext, useState } from 'react';
-import { Button, Form } from 'reactbootstrap';
-import productContext from '../../ProductContextProvider';
+import { Button, Form } from 'react-bootstrap';
+import { productContext } from '../../ProductContextProvider';
 
 const AddProduct = () => {
   const [title, setTitle] = useState('');
   const [descr, setDescr] = useState('');
   const [price, setPrice] = useState('');
 
-  const { addProduct } = usecontext(productContext);
+const {addProduct} = useContext(productContext)  
 
   const handleValues = () => {
-    const newProduct = {
+    if (!title || !descr || !price) {
+      alert('заполните поля');
+      return;
+    }
+
+    let newProduct = {
       title,
       descr,
       price,
     };
 
-    if (!title.trim() || !descr.trim() || !price.trim()) {
-      alert('заполните поля');
-    }
-    return;
     addProduct(newProduct);
   };
 
@@ -27,17 +28,17 @@ const AddProduct = () => {
     <div className='container d-flex flex-column mt-5 align-items-center'>
       <h1>ADD CONTACT</h1>
       <Form.Control
-        onChange={(e) => setTitle(e.target.name)}
+        onChange={(e) => setTitle(e.target.value)}
         className='mb-2 w-50'
         placeholder='title'
       />
       <Form.Control
-        onChange={(e) => setDescr(e.target.name)}
+        onChange={(e) => setDescr(e.target.value)}
         className='mb-2 w-50'
         placeholder='descr'
       />
       <Form.Control
-        onChange={(e) => setPrice(e.target.name)}
+        onChange={(e) => setPrice(e.target.value)}
         className='mb-2 w-50'
         placeholder='price'
         type='number'
